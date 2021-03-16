@@ -1,1 +1,0 @@
-# Lab Django with MySQL
