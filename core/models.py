@@ -27,4 +27,3 @@ def produto_pre_save(signal, instance, sender, **kwargs):
     instance.slug = slugify(instance.nome)
 
 signals.pre_save.connect(produto_pre_save, sender=produto)
-
