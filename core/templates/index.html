@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class='container'>
@@ -23,7 +25,7 @@
             <tbody>
                 {% for produto in produtos %}
                     <tr>
-                        <td scope='row'>{{ produto.id }}</td>0
+                        <td scope='row'>{{ produto.id }}</td>
                         <td scope='row'><a href="#modal{{produto.id}}" data-toggle="modal">{{ produto.nome }}</a></td>
                         <td scope='row'>{{ produto.preco }}</td>
                         <td scope='row'>{{ produto.estoque }}</td>
