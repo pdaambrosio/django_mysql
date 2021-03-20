@@ -1,1 +1,1 @@
-web: gunicorn p1-django-mysql.wsgi --log-file -
+web: gunicorn django_mysql.wsgi --log-file -
