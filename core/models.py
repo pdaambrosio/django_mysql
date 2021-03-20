@@ -13,7 +13,7 @@ class base(models.Model):
     class Meta:
         abstract = True
 
-class produto(base):
+class Produto(base):
     nome = models.CharField('Nome', max_length=100)
     preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
     estoque = models.IntegerField('Estoque')
@@ -26,4 +26,4 @@ class produto(base):
 def produto_pre_save(signal, instance, sender, **kwargs):
     instance.slug = slugify(instance.nome)
 
-signals.pre_save.connect(produto_pre_save, sender=produto)
+signals.pre_save.connect(produto_pre_save, sender=Produto)
