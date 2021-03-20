@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from .forms import ContatoForm, produtoModelForm
 from .models import Produto
+from django.shortcuts import redirect
 
 def index(request):
     context = {
@@ -35,22 +36,25 @@ def contato(request):
     return render(request, 'contato.html', context)
 
 def produto(request):
-    if str(request.method) == 'POST':
-        form = produtoModelForm(request.POST, request.FILES)
-        if form.is_valid():
-            # prod = form.save(commit=False)
-            # print(f'Nome: {prod.nome}')
-            # print(f'Preco: {prod.preco}')
-            # print(f'Estoque: {prod.estoque}')
-            # print(f'Imagem: {prod.imagem}')
-            form.save()
-            messages.success(request, 'Cadastro realizado com sucesso.')
-            form = produtoModelForm()
+    if str(request.user) != 'AnonymousUser':
+        if str(request.method) == 'POST':
+            form = produtoModelForm(request.POST, request.FILES)
+            if form.is_valid():
+                # prod = form.save(commit=False)
+                # print(f'Nome: {prod.nome}')
+                # print(f'Preco: {prod.preco}')
+                # print(f'Estoque: {prod.estoque}')
+                # print(f'Imagem: {prod.imagem}')
+                form.save()
+                messages.success(request, 'Cadastro realizado com sucesso.')
+                form = produtoModelForm()
+            else:
+                messages.error(request, 'Erro ao cadastrar produto.')
         else:
-            messages.error(request, 'Erro ao cadastrar produto.')
+            form = produtoModelForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'produto.html', context)
     else:
-        form = produtoModelForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'produto.html', context)
+        return redirect('index')
