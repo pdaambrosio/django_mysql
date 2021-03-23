@@ -17,4 +17,3 @@ six==1.15.0
 soupsieve==2.2
 sqlparse==0.4.1
 static3==0.7.0
-whitenoise==5.2.0
