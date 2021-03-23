@@ -1,6 +1,7 @@
 # Lab Django with MySQL
 
 This lab runs on the Heroku cloud.
+However, it can also be executed locally with some changes described below, using MySQL in a container, but without data persistence.
 
 ## Requirements
 
